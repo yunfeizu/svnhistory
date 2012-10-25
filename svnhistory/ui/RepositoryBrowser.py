@@ -1,0 +1,115 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'RepositoryBrowser.ui'
+#
+# Created: Fri Sep 28 13:46:38 2012
+#      by: PyQt4 UI code generator 4.9.1
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt4 import QtCore, QtGui
+
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
+class Ui_RepositoryBrowser(object):
+    def setupUi(self, RepositoryBrowser):
+        RepositoryBrowser.setObjectName(_fromUtf8("RepositoryBrowser"))
+        RepositoryBrowser.resize(919, 517)
+        self.gridLayout = QtGui.QGridLayout(RepositoryBrowser)
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.verticalLayout = QtGui.QVBoxLayout()
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+        self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+        self.label = QtGui.QLabel(RepositoryBrowser)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setObjectName(_fromUtf8("label"))
+        self.horizontalLayout.addWidget(self.label)
+        self.urlComboBox = QtGui.QComboBox(RepositoryBrowser)
+        self.urlComboBox.setEditable(True)
+        self.urlComboBox.setObjectName(_fromUtf8("urlComboBox"))
+        self.horizontalLayout.addWidget(self.urlComboBox)
+        self.upOneFolderBtn = QtGui.QPushButton(RepositoryBrowser)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.upOneFolderBtn.sizePolicy().hasHeightForWidth())
+        self.upOneFolderBtn.setSizePolicy(sizePolicy)
+        self.upOneFolderBtn.setText(_fromUtf8(""))
+        self.upOneFolderBtn.setObjectName(_fromUtf8("upOneFolderBtn"))
+        self.horizontalLayout.addWidget(self.upOneFolderBtn)
+        self.mirrorsBtn = QtGui.QPushButton(RepositoryBrowser)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.mirrorsBtn.sizePolicy().hasHeightForWidth())
+        self.mirrorsBtn.setSizePolicy(sizePolicy)
+        self.mirrorsBtn.setObjectName(_fromUtf8("mirrorsBtn"))
+        self.horizontalLayout.addWidget(self.mirrorsBtn)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.splitter = QtGui.QSplitter(RepositoryBrowser)
+        self.splitter.setOrientation(QtCore.Qt.Horizontal)
+        self.splitter.setObjectName(_fromUtf8("splitter"))
+        self.repositoryTree = QtGui.QTreeView(self.splitter)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.repositoryTree.sizePolicy().hasHeightForWidth())
+        self.repositoryTree.setSizePolicy(sizePolicy)
+        self.repositoryTree.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
+        self.repositoryTree.setHorizontalScrollMode(QtGui.QAbstractItemView.ScrollPerItem)
+        self.repositoryTree.setRootIsDecorated(True)
+        self.repositoryTree.setHeaderHidden(True)
+        self.repositoryTree.setObjectName(_fromUtf8("repositoryTree"))
+        self.repositoryTree.header().setDefaultSectionSize(0)
+        self.fileDetailTree = QtGui.QTreeWidget(self.splitter)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(2)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.fileDetailTree.sizePolicy().hasHeightForWidth())
+        self.fileDetailTree.setSizePolicy(sizePolicy)
+        self.fileDetailTree.setObjectName(_fromUtf8("fileDetailTree"))
+        self.fileDetailTree.header().setCascadingSectionResizes(True)
+        self.fileDetailTree.header().setDefaultSectionSize(120)
+        self.verticalLayout.addWidget(self.splitter)
+        self.horizontalLayout_2 = QtGui.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem)
+        self.viewHistoryBtn = QtGui.QPushButton(RepositoryBrowser)
+        self.viewHistoryBtn.setObjectName(_fromUtf8("viewHistoryBtn"))
+        self.horizontalLayout_2.addWidget(self.viewHistoryBtn)
+        self.closeBtn = QtGui.QPushButton(RepositoryBrowser)
+        self.closeBtn.setObjectName(_fromUtf8("closeBtn"))
+        self.horizontalLayout_2.addWidget(self.closeBtn)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+        self.label.setBuddy(self.urlComboBox)
+
+        self.retranslateUi(RepositoryBrowser)
+        QtCore.QObject.connect(self.closeBtn, QtCore.SIGNAL(_fromUtf8("clicked()")), RepositoryBrowser.reject)
+        QtCore.QMetaObject.connectSlotsByName(RepositoryBrowser)
+        RepositoryBrowser.setTabOrder(self.urlComboBox, self.upOneFolderBtn)
+        RepositoryBrowser.setTabOrder(self.upOneFolderBtn, self.mirrorsBtn)
+        RepositoryBrowser.setTabOrder(self.mirrorsBtn, self.repositoryTree)
+        RepositoryBrowser.setTabOrder(self.repositoryTree, self.fileDetailTree)
+
+    def retranslateUi(self, RepositoryBrowser):
+        RepositoryBrowser.setWindowTitle(QtGui.QApplication.translate("RepositoryBrowser", "Repository Brower", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("RepositoryBrowser", "URL:", None, QtGui.QApplication.UnicodeUTF8))
+        self.upOneFolderBtn.setToolTip(QtGui.QApplication.translate("RepositoryBrowser", "Up one folder", None, QtGui.QApplication.UnicodeUTF8))
+        self.mirrorsBtn.setText(QtGui.QApplication.translate("RepositoryBrowser", "Mirroirs", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileDetailTree.headerItem().setText(0, QtGui.QApplication.translate("RepositoryBrowser", "File", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileDetailTree.headerItem().setText(1, QtGui.QApplication.translate("RepositoryBrowser", "Revision", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileDetailTree.headerItem().setText(2, QtGui.QApplication.translate("RepositoryBrowser", "Author", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileDetailTree.headerItem().setText(3, QtGui.QApplication.translate("RepositoryBrowser", "Date", None, QtGui.QApplication.UnicodeUTF8))
+        self.viewHistoryBtn.setText(QtGui.QApplication.translate("RepositoryBrowser", "View history", None, QtGui.QApplication.UnicodeUTF8))
+        self.closeBtn.setText(QtGui.QApplication.translate("RepositoryBrowser", "Close", None, QtGui.QApplication.UnicodeUTF8))
+
