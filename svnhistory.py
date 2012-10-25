@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+# Copyright (C) 2012 Yunfei Zu <zuyunfei@gmail.com>
 
 from PyQt4 import *
 from svnhistory.CodeHistoryViewer import *
