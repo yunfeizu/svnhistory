@@ -26,7 +26,7 @@ if __name__ == '__main__':
 		author=svnhistory.__author__,
 		author_email=svnhistory.__email__,
 		license=svnhistory.__license__,
-		url='',
+		url='https://github.com/yunfeizu/svnhistory',
         scripts=['data/svnhistory'],
         # data_files=[],
         # package_data={},

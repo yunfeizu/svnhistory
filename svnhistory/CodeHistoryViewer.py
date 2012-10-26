@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Copyright (C) 2012 Yunfei Zu <zuyunfei@gmail.com>
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
