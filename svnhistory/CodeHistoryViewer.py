@@ -286,7 +286,10 @@ def catCode(filePath, revision):
     tmpFileName = '/tmp/' + str(revision.number) + fileName
     tmpFile = open(tmpFileName, 'w+')
     svnClient = pysvn.Client()
-    tmpFile.write(svnClient.cat(filePath, revision))
+    try:
+        tmpFile.write(svnClient.cat(filePath, revision))
+    except pysvn.ClientError, e:
+        print e
     return tmpFileName
 
 

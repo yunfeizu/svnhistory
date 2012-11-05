@@ -31,7 +31,7 @@ Features
 
 Dependencies
 ------------
-* Python (tested with version 2.7) with pyqt, pysvn
+* Python (tested with version 2.7 on fedora 17) with PyQt4, pysvn
 * meld (text diff tool)
 
 Installing
