@@ -8,6 +8,7 @@ import pysvn
 from time import *
 from CodeHistoryViewer import CodeHistoryViewer
 
+
 mirrorServers = {"svn.sr.elekta.se" : "mirror.elekta.shanghai/svn"}
 DataRole = Qt.UserRole + 1
 ChildrenDataRow = Qt.UserRole + 2
@@ -27,6 +28,9 @@ def toOriginalUrl(url):
 def absoluteSvnPath(pysvnlist):
     return '%(path)s' % pysvnlist
 
+def get_login( realm, username, may_save ):
+    return True, 'dev', 'focus1', True
+
 class MirrorServersDialog(QDialog):
     def __init__(self, parent=None):
         super(MirrorServersDialog, self).__init__(parent)
@@ -36,6 +40,7 @@ class RepositoryDirModel(QStandardItemModel):
         super(RepositoryDirModel, self).__init__(parent)
         self.rootUrl = None
         self.svnClient = pysvn.Client()
+        self.svnClient.callback_get_login = get_login
 
     def rootUrlChanged(self, url):
         rootUrl = self.svnClient.root_url_from_path(url)

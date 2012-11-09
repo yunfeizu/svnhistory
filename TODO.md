@@ -15,6 +15,6 @@ Functionality to be improved:
 
 Bug to be fixed:
 -----------
+* Done: fix diff with new added file
 * TODO: exception handle when not starting in work path
-* TODO: fix diff with new added file
 * TODO: segmentation error on ubuntu 
