@@ -7,29 +7,22 @@ from ui.RepositoryBrowser import *
 import pysvn
 from time import *
 from CodeHistoryViewer import CodeHistoryViewer
+from MirrorServer import MirrorServerView, mirrorUrl
 
 
-mirrorServers = {"svn.sr.elekta.se" : "mirror.elekta.shanghai/svn"}
 DataRole = Qt.UserRole + 1
 ChildrenDataRow = Qt.UserRole + 2
 iconProvider = QFileIconProvider()
-
-def mirrorUrl(url):
-    for key, value in mirrorServers.iteritems():
-        if key in url:
-            return url.replace(key, value)
-    return url
-
-def toOriginalUrl(url):
-    for key, value in mirrorServers.iteritems():
-        if value in url:
-            return url.replace(value, key)
 
 def absoluteSvnPath(pysvnlist):
     return '%(path)s' % pysvnlist
 
 def get_login( realm, username, may_save ):
-    return True, 'dev', 'focus1', True
+    user = QInputDialog.getText(None, "Please Input User Name",
+                                 "User Name")
+    passwd = QInputDialog.getText(None, "Please Input Password",
+                                  "Password", QLineEdit.Password)
+    return user[1], user[0], passwd[0], True
 
 class MirrorServersDialog(QDialog):
     def __init__(self, parent=None):
@@ -108,8 +101,12 @@ class RepositoryBrowser(QDialog, Ui_RepositoryBrowser):
         super(RepositoryBrowser, self).__init__(parent)
         self.setupUi(self)
         self.urlComboBox.lineEdit().editingFinished.connect(self.on_urlEditingFinished)
-        info = pysvn.Client().info(cwd)
-        self.urlComboBox.setEditText(info.url)
+        try:
+            info = pysvn.Client().info(cwd)
+            self.urlComboBox.setEditText(info.url)
+        except pysvn.ClientError, e:
+            print e
+            self.urlComboBox.setEditText("")
         self.url = ""
         self.fileDetailTree.header().setResizeMode(QHeaderView.ResizeToContents)
         self.repositoryDirModel = RepositoryDirModel()
@@ -176,7 +173,7 @@ class RepositoryBrowser(QDialog, Ui_RepositoryBrowser):
         childrenPathInfoList = item.data(ChildrenDataRow).toPyObject()
         self.refreshFileDetailTree(childrenPathInfoList)
         pathInfo = item.data(DataRole).toPyObject()
-        path = toOriginalUrl(absoluteSvnPath(pathInfo[0]))
+        path = absoluteSvnPath(pathInfo[0])
         self.urlComboBox.setEditText(path)
         self.url = path
 
@@ -185,3 +182,7 @@ class RepositoryBrowser(QDialog, Ui_RepositoryBrowser):
         historyViewer = CodeHistoryViewer(self)
         historyViewer.refresh(mirrorUrl(url))
         historyViewer.exec_()
+
+    def on_mirrorsBtn_pressed(self):
+        dlg = MirrorServerView(self)
+        dlg.exec_()
