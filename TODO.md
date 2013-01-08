@@ -16,5 +16,6 @@ Functionality to be improved:
 Bug to be fixed:
 -----------
 * Done: fix diff with new added file
-* TODO: exception handle when not starting in work path
-* TODO: segmentation error on ubuntu 
+* Done: exception handle when not starting in work path
+* Done: segmentation error on ubuntu 
+        reason: pysvn.Client().root_url_from_path() crashes, use info2() instead

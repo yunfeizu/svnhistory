@@ -31,13 +31,17 @@ Features
 
 Dependencies
 ------------
-* Python (tested with version 2.7 on fedora 17) with PyQt4, pysvn
+* Python 2.x (tested with version 2.7) 
+* PyQt4 
+* pysvn (ubuntu package python-svn)
 * meld (text diff tool)
 
 Installing
 ----------
 To install svnhistory manually:
     sudo python setup.py install
+
+tested on fedora 17 and ubuntu 12.04
 
 Getting Started
 ---------------

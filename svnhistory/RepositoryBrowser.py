@@ -22,7 +22,19 @@ def get_login( realm, username, may_save ):
                                  "User Name")
     passwd = QInputDialog.getText(None, "Please Input Password",
                                   "Password", QLineEdit.Password)
-    return user[1], user[0], passwd[0], True
+    return user[1], str(user[0]), str(passwd[0]), True
+
+svnClient = pysvn.Client()
+svnClient.callback_get_login = get_login
+
+def get_root_url(url):
+    info = svnClient.info2(url, recurse=False)
+    returner = ""
+    try:
+        returner = info[0][1]["repos_root_URL"]
+    except Exception, e:
+        print e
+    return returner
 
 class MirrorServersDialog(QDialog):
     def __init__(self, parent=None):
@@ -32,18 +44,12 @@ class RepositoryDirModel(QStandardItemModel):
     def __init__(self, parent=None):
         super(RepositoryDirModel, self).__init__(parent)
         self.rootUrl = None
-        self.svnClient = pysvn.Client()
-        self.svnClient.callback_get_login = get_login
-
-    def rootUrlChanged(self, url):
-        rootUrl = self.svnClient.root_url_from_path(url)
-        return self.rootUrl == rootUrl
 
     def refresh(self, url):
-        if not self.svnClient.is_url(url):
+        if not svnClient.is_url(url):
             print 'not valid url'
         self.clear()
-        self.rootUrl = self.svnClient.root_url_from_path(url)
+        self.rootUrl = get_root_url(url)
         print self.rootUrl
         url = url[url.rfind(self.rootUrl) + len(self.rootUrl):]
         expandingTree = [self.rootUrl]
@@ -54,13 +60,13 @@ class RepositoryDirModel(QStandardItemModel):
 
     def addRootItem(self, expandingTree=[]):
         self.rootRow = QStandardItem(self.rootUrl)
-        pathlist = self.svnClient.list(self.rootUrl)
+        pathlist = svnClient.list(self.rootUrl)
         self.rootRow.setData(pathlist[0], DataRole)
         self.appendRow(self.rootRow)
         self.addPathItems(self.rootUrl, self.rootRow, expandingTree)
 
     def addPathItems(self, path, parentRow, expandingTree=[]):
-        pathInfoList = self.svnClient.list(path)
+        pathInfoList = svnClient.list(path)
         parentRow.setData(pathInfoList, ChildrenDataRow)
         for pathInfo in pathInfoList:
             subPath = absoluteSvnPath(pathInfo[0])
